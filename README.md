@@ -82,4 +82,5 @@ Please see the <a href="https://github.com/mbppower/CordovaCameraPreviewApp">Cor
 
 
 
-
+Forked from https://github.com/stephan-nordnes-eriksen/CordovaCameraPreview due to his change in file saving on Android
+Fixing issue with camera rotation on load
