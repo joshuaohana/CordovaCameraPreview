@@ -1,7 +1,6 @@
 package com.mbppower;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -510,13 +509,8 @@ class Preview extends RelativeLayout implements SurfaceHolder.Callback {
             mSupportedPreviewSizes = mCamera.getParameters().getSupportedPreviewSizes();
 
 
-            //mCamera.setDisplayOrientation(getDisplayOrientation());
-            // Commenting out above line and uncommenting two below fixes Landscape mode preview
             mCamera.getParameters().setRotation(getDisplayOrientation());
             requestLayout();
-
-
-
         }
     }
 
@@ -540,17 +534,6 @@ class Preview extends RelativeLayout implements SurfaceHolder.Callback {
                 angle = 90;
                 break;
         }
-
-
-//                    AlertDialog alert = new AlertDialog.Builder(getContext()).create();
-//            alert.setTitle("Orientation");
-////            alert.setMessage(Integer.toString(getDisplayOrientation()));
-//            alert.setMessage("display.getRotation= " + Integer.toString(display.getRotation()) + " angle= " + angle);
-//            alert.setButton("OK", new DialogInterface.OnClickListener() {
-//                public void onClick(DialogInterface dialog, int which) {
-//                } });
-//            alert.show();
-
 
         return angle;
     }
@@ -613,6 +596,15 @@ class Preview extends RelativeLayout implements SurfaceHolder.Callback {
                     previewHeight = mPreviewSize.width;
                 }
             }
+
+
+            // preview scale //
+            // this kinda works maybe 85% good
+            //
+            previewWidth = 200;
+            previewHeight = 175;
+            // using above for now
+            // TODO
 
             int nW;
             int nH;
