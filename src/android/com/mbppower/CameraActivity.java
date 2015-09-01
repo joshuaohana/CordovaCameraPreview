@@ -1,6 +1,7 @@
 package com.mbppower;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -35,9 +36,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.CharSequence;
+import java.lang.Integer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+
+import android.content.DialogInterface;
+
 
 public class CameraActivity extends Fragment {
 
@@ -502,9 +508,15 @@ class Preview extends RelativeLayout implements SurfaceHolder.Callback {
         mCamera = camera;
         if (mCamera != null) {
             mSupportedPreviewSizes = mCamera.getParameters().getSupportedPreviewSizes();
-            mCamera.setDisplayOrientation(getDisplayOrientation());
-            //mCamera.getParameters().setRotation(getDisplayOrientation());
-            //requestLayout();
+
+
+            //mCamera.setDisplayOrientation(getDisplayOrientation());
+            // Commenting out above line and uncommenting two below fixes Landscape mode preview
+            mCamera.getParameters().setRotation(getDisplayOrientation());
+            requestLayout();
+
+
+
         }
     }
 
@@ -528,6 +540,18 @@ class Preview extends RelativeLayout implements SurfaceHolder.Callback {
                 angle = 90;
                 break;
         }
+
+
+//                    AlertDialog alert = new AlertDialog.Builder(getContext()).create();
+//            alert.setTitle("Orientation");
+////            alert.setMessage(Integer.toString(getDisplayOrientation()));
+//            alert.setMessage("display.getRotation= " + Integer.toString(display.getRotation()) + " angle= " + angle);
+//            alert.setButton("OK", new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog, int which) {
+//                } });
+//            alert.show();
+
+
         return angle;
     }
 
